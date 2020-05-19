@@ -195,7 +195,7 @@ def torch_to_np(img_var):
     return img_var.detach().cpu().numpy()[0]
 
 
-def optimize(optimizer_type, parameters, closure, LR, num_iter):
+def optimize(optimizer_type, parameters, closure, LR, num_iter, changed):
     """Runs optimization loop.
 
     Args:
@@ -223,10 +223,21 @@ def optimize(optimizer_type, parameters, closure, LR, num_iter):
     elif optimizer_type == 'adam':
         print('Starting optimization with ADAM')
         optimizer = torch.optim.Adam(parameters, lr=LR)
-        
         for j in range(num_iter):
             optimizer.zero_grad()
-            closure()
+            loss = closure()
+            if(loss.item()<=0.0005 and LR == 0.001 and loss.item()>0.0000001):
+                LR = 0.0001
+                for param_group in optimizer.param_groups:
+                    param_group['lr'] = 0.0001
+                print("\n\n loss:", loss.item())
+                print("\n\n\n changed LR to 0.0001 \n\n\n")
+            elif(loss.item()>0.0005 and LR == 0.0001 and loss.item()>0.0000001):
+                LR = 0.001
+                for param_group in optimizer.param_groups:
+                    param_group['lr'] = 0.001
+                print("\n\n loss:", loss.item())
+                print("\n\n\n changed LR to 0.001 \n\n\n")
             optimizer.step()
     else:
         assert False
