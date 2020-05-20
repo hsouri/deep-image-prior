@@ -1,4 +1,4 @@
- # Deep Learning Based Denoiser for ImagesRendered by Monte Carlo Sampling
+ # Deep Learning Based Denoiser for Images Rendered by Monte Carlo Sampling
  
  Note: The code is forked from https://dmitryulyanov.github.io/deep_image_prior. Please follow the instructions given in the link for installation and details of the code.
 
