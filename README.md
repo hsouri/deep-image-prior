@@ -6,7 +6,7 @@ In this code, we design a denoiser for images rendered by Monte Carlo sampling, 
 
 Note: Our implemtation is in the "the MonteCarlo-denoiser.ipynb" script. The denoised results are in the "Results-MonteCarloDenoising" folder.
 
-Note2: You can find the full technical report [here](https://github.com/hsouri/deep-image-prior/blob/master/Report/Report.pdf)
+Note2: You can find the full technical report [here](https://github.com/hsouri/deep-image-prior/blob/master/Report/Report.pdf).
 
 Some putputs:
 
